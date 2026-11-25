@@ -1,0 +1,62 @@
+// version info for this project
+#define VER_PRODUCTNAME_STR      "EGiftCard"
+#define VER_INTERNALNAME_STR     "EGiftCard.exe"
+#define VER_FILEDESCRIPTION_STR  "EGiftCard"
+#define VER_MAJOR                1
+#define VER_MINOR                0
+#define VER_REVISION             0            //dont use
+#define VER_BUILD                0            //dont use
+
+// common version info for FSSI Windows apps
+#define VER_COMPANYNAME_STR      "Foodstuffs SI Ltd"
+#define VER_LEGALCOPYRIGHT_STR   L"\251 Foodstuffs SI Ltd. All rights reserved."
+#define VER_FILEFLAGSMASK        0  // VS_FFI_FILEFLAGSMASK
+#define VER_FILEFLAGS            0
+#define VER_FILEOS               4  // VOS__WINDOWS32
+#define VER_FILETYPE             1  // VFT_APP
+#define VER_FILESUBTYPE          0
+#define VER_VERSION_UNICODE_LANG  "140904B0"  // NZ English, Unicode
+#define VER_VERSION_TRANSLATION   0x1409, 0x04B0
+
+// convert-to-string macro (note: not compatible with brcc32!)
+#define str_i(i) #i
+#define str(x) str_i(x)
+
+// automatically defined version info
+#define VER_FILEVERSION VER_MAJOR,VER_MINOR,VER_REVISION,VER_BUILD
+#define VER_PRODUCTVERSION VER_FILEVERSION
+#define VER_FILEVERSION_STR str(VER_MAJOR.VER_MINOR.VER_REVISION.VER_BUILD)
+#define VER_PRODUCTVERSION_STR VER_FILEVERSION_STR
+#define VER_ORIGINALFILENAME_STR VER_INTERNALNAME_STR
+
+
+// adapted from common.ver in Windows SDK
+1 VERSIONINFO  // VS_VERSION_INFO VERSIONINFO
+FILEVERSION    VER_FILEVERSION
+PRODUCTVERSION VER_PRODUCTVERSION
+FILEFLAGSMASK  VER_FILEFLAGSMASK
+FILEFLAGS      VER_FILEFLAGS
+FILEOS         VER_FILEOS
+FILETYPE       VER_FILETYPE
+FILESUBTYPE    VER_FILESUBTYPE
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK VER_VERSION_UNICODE_LANG
+    BEGIN
+      VALUE "CompanyName",     VER_COMPANYNAME_STR
+      VALUE "FileDescription", VER_FILEDESCRIPTION_STR
+      VALUE "FileVersion",     VER_FILEVERSION_STR
+      VALUE "InternalName",    VER_INTERNALNAME_STR
+      VALUE "LegalCopyright",  VER_LEGALCOPYRIGHT_STR
+      VALUE "OriginalFilename",VER_ORIGINALFILENAME_STR
+      VALUE "ProductName",     VER_PRODUCTNAME_STR
+      VALUE "ProductVersion",  VER_PRODUCTVERSION_STR
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", VER_VERSION_TRANSLATION
+  END
+END

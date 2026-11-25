@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "9fca041f-46d8-49bc-9e61-2d7c7616eb5b",
+		"name": "EziPay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38677156"
+	},
+	"item": [
+		{
+			"name": "sale digital",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<REQUEST TYPE=\"SALE\" MODE=\"DIGITAL\">\r\n    <AUTHORIZATION>\r\n        <USERNAME>{{Ezipay_username}}</USERNAME>\r\n        <PASSWORD>{{Ezipay_password}}</PASSWORD>\r\n    </AUTHORIZATION>\r\n    <RETAILERID>121313</RETAILERID>\r\n    <TERMINALID>12131301</TERMINALID>\r\n    <PRODUCTID>9421009560110</PRODUCTID>\r\n    <TXID>abcdefg</TXID>\r\n    <LOCALDATETIME>2024-11-06 12:34:56</LOCALDATETIME>\r\n    <CURRENCY>NZD</CURRENCY>\r\n    <AMOUNT>10000</AMOUNT>\r\n    <RECEIPT>\r\n        <LANGUAGE>NZD</LANGUAGE>\r\n        <CHARSPERLINE>32</CHARSPERLINE>\r\n        <TYPE>FULLTEXT</TYPE>\r\n    </RECEIPT>\r\n</REQUEST>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapp-qa.ezipay.net.nz:52713",
+					"protocol": "https",
+					"host": [
+						"webapp-qa",
+						"ezipay",
+						"net",
+						"nz"
+					],
+					"port": "52713"
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Ezipay_username",
+			"value": "yf?e41k^sa^F"
+		},
+		{
+			"key": "Ezipay_password",
+			"value": "8TQc5OXucie@"
+		},
+		{
+			"key": "Ezipay_signature",
+			"value": "a3b9372832fcddbb489905ef224d6b22",
+			"type": "string"
+		}
+	]
+}

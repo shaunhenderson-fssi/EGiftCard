@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "b59c0a07-4c8f-4c75-b5ed-43b4b5f54321",
+		"name": "EziPay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34903788"
+	},
+	"item": [
+		{
+			"name": "sale digital",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Set your secret key\r",
+							"const secretKey = pm.variables.get(\"Ezipay_password\");\r",
+							"\r",
+							"const crypt = require('crypto-js');\r",
+							"\r",
+							"var xmlRequest = pm.request.body.raw;\r",
+							"console.log('xmlRequest:', xmlRequest);\r",
+							"\r",
+							"xmlRequest = xmlRequest.replace(/<USERNAME>(.*?)<\\/USERNAME>/g, '<USERNAME>' + pm.variables.get('Ezipay_username') + '</USERNAME>');\r",
+							"xmlRequest = xmlRequest.replace(/<PASSWORD>(.*?)<\\/PASSWORD>/g, '<PASSWORD>' + pm.variables.get('Ezipay_password') + '</PASSWORD>');\r",
+							"\r",
+							"// Generate HMAC signature\r",
+							"const signature = crypt.HmacSHA256(xmlRequest, secretKey).toString(crypt.enc.Hex);\r",
+							"console.log('HMAC Signature:', signature);\r",
+							"\r",
+							"xmlRequest = xmlRequest.replace(/<PASSWORD>(.*?)<\\/PASSWORD>/g, '<SIGNATURE>' + signature + '</SIGNATURE>');\r",
+							"\r",
+							"console.log('xmlRequest:', xmlRequest);\r",
+							"// Set the signature as an environment variable\r",
+							"//pm.environment.set('hmacSignature', signature);\r",
+							"\r",
+							"//pm.request.body.update(xmlRequest);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<REQUEST TYPE=\"SALE\" MODE=\"DIGITAL\">\r\n    <AUTHORIZATION>\r\n        <USERNAME>{{Ezipay_username}}</USERNAME>\r\n        <PASSWORD>{{Ezipay_password}}</PASSWORD>\r\n    </AUTHORIZATION>\r\n    <RETAILERID>121313</RETAILERID>\r\n    <TERMINALID>12131301</TERMINALID>\r\n    <PRODUCTID>9421009560110</PRODUCTID>\r\n    <TXID>abcdefg</TXID>\r\n    <LOCALDATETIME>2024-11-06 12:34:56</LOCALDATETIME>\r\n    <CURRENCY>NZD</CURRENCY>\r\n    <AMOUNT>10000</AMOUNT>\r\n    <RECEIPT>\r\n        <LANGUAGE>NZD</LANGUAGE>\r\n        <CHARSPERLINE>32</CHARSPERLINE>\r\n        <TYPE>FULLTEXT</TYPE>\r\n    </RECEIPT>\r\n</REQUEST>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapp-qa.ezipay.net.nz:52713",
+					"protocol": "https",
+					"host": [
+						"webapp-qa",
+						"ezipay",
+						"net",
+						"nz"
+					],
+					"port": "52713"
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Ezipay_username",
+			"value": "yf?e41k^sa^F"
+		},
+		{
+			"key": "Ezipay_password",
+			"value": "8TQc5OXucie@"
+		},
+		{
+			"key": "Ezipay_signature",
+			"value": "a3b9372832fcddbb489905ef224d6b22",
+			"type": "string"
+		}
+	]
+}
